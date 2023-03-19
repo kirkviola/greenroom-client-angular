@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Material } from '../material/material.service';
 import { baseUrl } from '../shared/app-constants';
 import { UserCourse } from './user-course.service';
 
@@ -36,5 +37,6 @@ export interface User {
   email: string;
 
   userCourses: UserCourse[];
+  materials: Material[];
 }
 
