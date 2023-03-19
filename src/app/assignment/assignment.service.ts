@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Material } from '../material/material.service';
 import { baseUrl } from '../shared/app-constants';
-import { AssignmentMaterial } from './assignment-material.service';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +47,5 @@ export interface Assignment {
   changeTime: string; // TO DO: get a proper time parser
   courseId: number;
 
-  assignmentMaterials: AssignmentMaterial[]
+  materials: Material[];
 }
