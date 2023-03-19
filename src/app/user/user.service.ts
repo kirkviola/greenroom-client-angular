@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { baseUrl } from '../shared/app-constants';
+import { UserCourse } from './user-course.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,18 @@ export class UserService {
   getAll(): Observable<User[]> {
     return this.http.get(this.baseUrl) as Observable<User[]>
   }
+
+  getOneByUserId(userId: number): Observable<User> {
+    return this.http.get(`${this.baseUrl}/${userId}`) as Observable<User>;
+  }
+
+  updateOneUser(user: User): Observable<User> {
+    return this.http.put(`${this.baseUrl}/${user.userId}`, user) as Observable<User>;
+  }
+
+  deleteOneUserByUserId(userId: number): Observable<User> {
+    return this.http.delete(`${this.baseUrl}/${userId}`) as Observable<User>;
+  }
 }
 
 export interface User {
@@ -25,17 +38,3 @@ export interface User {
   userCourses: UserCourse[];
 }
 
-export interface UserCourse {
-  userCourseId: number;
-  isOwner: boolean;
-  userId: number;
-  courseId: number;
-}
-
-export interface UserMaterial {
-  userMaterialId: number;
-  userMaterialName: string;
-  userMaterialDescription: string;
-  userMaterialAttachment: Blob;
-  userId: number;
-}
